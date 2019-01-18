@@ -385,11 +385,10 @@ def get_hosting_info(domain):
     try:
         w = whois.whois(domain)
         return w.get('registrar')
-    except whois.parser.PywhoisError:
+    except:
         print("No hosting information available.")
         return 'NOT AVAILABLE'
-    except socket.timeout:
-        print('Host Time out...skipping ...')
+
 
 
 def get_ipaddress(domain):
@@ -596,7 +595,7 @@ def start(start_zip):
                                             pass
 # sites will contain what metadata to lookup from the source git repos
 # START_ZIP = 'http://repo.mrblamo.xyz/repository.universalscrapers-1.0.0.zip'
-# START_ZIP = 'Http://www.tantrumtv.com/download/repository.tantrumtv-1.2.3.zip'
+START_ZIP = 'Http://www.tantrumtv.com/download/repository.tantrumtv-2.0.1.zip'
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Get Information about site")
     # group = parser.add_mutually_exclusive_group()
@@ -604,3 +603,5 @@ if __name__ == '__main__':
     parser.add_argument("-z", "--zipfile", dest="zip_url", help="The Zip file to be downloaded and scraped")
     # group.add_argument("-r", "--zipdir", dest="zip_dir", help="The directory in which the zip files are contained")
     args = parser.parse_args()
+
+    start(START_ZIP)
